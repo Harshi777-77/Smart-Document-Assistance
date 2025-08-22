@@ -1,0 +1,189 @@
+/* 🌟 Global Styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #f9f9f9);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* 🌟 Container */
+.container,
+.dashboard {
+    width: 90%;
+    max-width: 1000px;
+    background: #ffffff;
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* 🌟 Title */
+h1,
+h2 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1e88e5;
+    letter-spacing: 1px;
+}
+
+h1::after,
+h2::after {
+    content: "";
+    display: block;
+    margin: 10px auto 0;
+    width: 60px;
+    height: 3px;
+    background: #1e88e5;
+    border-radius: 2px;
+}
+
+/* 🌟 Form Inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border: 1px solid #1e88e5;
+    box-shadow: 0 0 6px rgba(30, 136, 229, 0.3);
+}
+
+/* 🌟 Buttons */
+.btn {
+    display: inline-block;
+    background: #1e88e5;
+    color: #fff;
+    padding: 10px 16px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: #1565c0;
+    transform: translateY(-2px);
+}
+
+.btn.logout {
+    background: #e53935;
+}
+
+.btn.logout:hover {
+    background: #c62828;
+}
+
+.btn.upload {
+    background: #43a047;
+}
+
+.btn.upload:hover {
+    background: #2e7d32;
+}
+
+/* 🌟 Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+/* Logout button fixed top-right */
+.dashboard .btn.logout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* 🌟 Upload Section */
+.upload-form {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* 🌟 Files Grid */
+.files-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* 2 columns */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* 🌟 File Card */
+.file-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.file-box h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+
+.file-box p {
+    font-size: 14px;
+    color: #7f8c8d;
+    word-break: break-word;
+}
+
+/* Buttons inside file cards */
+.file-box .btn {
+    margin-right: 8px;
+    margin-top: 10px;
+}
+
+/* 🌟 Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+}

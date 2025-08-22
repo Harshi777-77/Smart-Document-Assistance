@@ -1,0 +1,78 @@
+/* 🌟 Full-page background */
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+}
+
+/* Centered container */
+.login-container {
+    text-align: center;
+    width: 100%;
+    max-width: 380px;
+}
+
+/* Big user icon at top */
+.login-container::before {
+    content: "\f0c0";
+    /* Font Awesome users icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 80px;
+    color: #1e88e5;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 1px solid #1e88e5;
+    box-shadow: 0 4px 14px rgba(30, 136, 229, 0.3);
+}
+
+/* Login button */
+button,
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background: #1e88e5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(30, 136, 229, 0.4);
+}
+
+/* Hide Remember Me & Forgot Password */
+label[for="remember"],
+a[href*="forgot"] {
+    display: none !important;
+}

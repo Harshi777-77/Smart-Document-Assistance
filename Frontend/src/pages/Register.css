@@ -1,0 +1,130 @@
+/* 🌟 Register Page */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    font-family: "Poppins", sans-serif;
+    animation: fadeInBg 1.2s ease forwards;
+}
+
+.register-card {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    animation: popUp 0.8s ease forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 18px;
+    background: linear-gradient(90deg, #ff758c, #ff7eb3, #43e97b, #38f9d7);
+    z-index: -1;
+    animation: gradientFlow 6s linear infinite;
+}
+
+.register-card h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: slideDown 0.8s ease;
+}
+
+.register-card input {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.register-card input:focus {
+    border-color: #ff758c;
+    box-shadow: 0 0 8px rgba(255, 118, 143, 0.4);
+    outline: none;
+    transform: scale(1.02);
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(90deg, #ff758c, #ff7eb3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 18px rgba(255, 118, 143, 0.4);
+}
+
+/* Reuse animations */
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popUp {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

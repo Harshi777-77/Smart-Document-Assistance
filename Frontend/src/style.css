@@ -26,7 +26,7 @@ body {
 
 .auth-box h2 {
     margin-bottom: 20px;
-    font-size: 26px;
+    font-size: 25px;
     color: #444;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .dashboard-header h1 {
-    font-size: 2rem;
+    font-size: 8rem;
     font-weight: 700;
     color: #333;
     display: flex;
@@ -105,7 +105,7 @@ body {
 
 .dashboard-header h1 i {
     color: #fbbf24;
-    font-size: 2.2rem;
+    font-size: 4.2rem;
 }
 
 /* Upload Box */
@@ -124,11 +124,11 @@ body {
 /* Bigger & Styled File Upload Box */
 .upload-form input[type="file"] {
     display: block;
-    width: 100%;
+    width: 300%;
     max-width: 350px;
     /* increase width */
-    padding: 12px;
-    font-size: 16px;
+    padding: 16px;
+    font-size: 18px;
     border: 2px solid #1e88e5;
     border-radius: 8px;
     background: #f9f9f9;

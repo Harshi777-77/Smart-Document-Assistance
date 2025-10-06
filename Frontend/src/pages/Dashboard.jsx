@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaUpload, FaTrash, FaEye, FaSignOutAlt, FaTimes } from "react-icons/fa";
+import { FaUpload, FaTrash, FaEye, FaSignOutAlt, FaTimes, FaGoogleDrive } from "react-icons/fa";
+import useDrivePicker from "react-google-drive-picker";
 import "./../style.css";
 import "../pages/dashboard.css";
 
@@ -11,6 +12,9 @@ const Dashboard = () => {
     const [file, setFile] = useState(null);
     const [documents, setDocuments] = useState([]);
     const [viewDoc, setViewDoc] = useState(null);
+
+    // Google Drive Picker hook
+    const [openPicker] = useDrivePicker();
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user_id");
@@ -45,13 +49,43 @@ const Dashboard = () => {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
-            alert(res.data.message);
-            setFile(null);
             fetchDocuments(userId);
+            setFile(null);
         } catch (err) {
             console.error(err);
             alert("⚠️ Upload failed");
         }
+    };
+
+    const handleDriveUpload = () => {
+        openPicker({
+            clientId: "464514685913-jqi8sl325cd5iuolhvi3jcm0m9njmkh0.apps.googleusercontent.com",
+            developerKey: "AIzaSyDbpcPen8_BTWSzoXZCwcoA3jlIvEs1UWI",
+            viewId: "DOCS",
+            showUploadView: true,
+            showUploadFolders: true,
+            supportDrives: true,
+            multiselect: false,
+            callbackFunction: async (data) => {
+                if (data.action === "picked") {
+                    const fileData = data.docs[0];
+                    const accessToken = gapi.auth.getToken().access_token;
+
+                    try {
+                        await axios.post(`${API_BASE}/upload/drive`, {
+                            user_id: userId,
+                            file_id: fileData.id,
+                            access_token: accessToken,
+                        });
+
+                        fetchDocuments(userId);
+                    } catch (err) {
+                        console.error(err);
+                        alert("⚠️ Google Drive upload failed");
+                    }
+                }
+            },
+        });
     };
 
     const handleDelete = async (docId) => {
@@ -86,22 +120,27 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            {/* Header */}
             <header className="app-header">
                 <h1>📂 Smart Document Assistance</h1>
             </header>
 
             <h2>Welcome to Dashboard🎉</h2>
 
-            {/* Upload */}
-            <div className="upload-form">
-                <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-                <button onClick={handleUpload} className="btn upload">
-                    <FaUpload /> Upload File
-                </button>
+            <div className="upload-options">
+                <div className="upload-form">
+                    <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+                    <button onClick={handleUpload} className="btn upload">
+                        <FaUpload /> Upload
+                    </button>
+                </div>
+
+                <div className="drive-upload">
+                    <button onClick={handleDriveUpload} className="btn drive-upload-btn">
+                        <FaGoogleDrive /> Upload from Google Drive
+                    </button>
+                </div>
             </div>
 
-            {/* Documents */}
             <div className="files-container">
                 {documents.length === 0 ? (
                     <p className="no-files">No documents uploaded yet.</p>
@@ -109,7 +148,10 @@ const Dashboard = () => {
                     documents.map((doc) => (
                         <div key={doc.id} className="file-box">
                             <h3>{doc.title || "Untitled Document"}</h3>
-                            <p>{doc.file_path}</p>
+                            {doc.extracted_text && (
+                                <p className="extracted-text">{doc.extracted_text}</p>
+                            )}
+                            <p className="file-path">{doc.file_path}</p>
                             <button className="btn upload" onClick={() => handleView(doc.id)}>
                                 <FaEye /> View
                             </button>
@@ -121,30 +163,15 @@ const Dashboard = () => {
                 )}
             </div>
 
-            {/* Modal View */}
             {viewDoc && (
                 <div className="modal">
                     <div className="modal-content">
                         {viewDoc.type.startsWith("image/") ? (
-                            <img
-                                src={viewDoc.url}
-                                alt="Uploaded file"
-                                style={{ maxWidth: "100%", maxHeight: "500px" }}
-                            />
+                            <img src={viewDoc.url} alt="Uploaded file" style={{ maxWidth: "100%", maxHeight: "500px" }} />
                         ) : viewDoc.type === "application/pdf" ? (
-                            <iframe
-                                src={viewDoc.url}
-                                title="PDF Preview"
-                                width="300%"
-                                height="800px"
-                            />
+                            <iframe src={viewDoc.url} title="PDF Preview" width="300%" height="800px" />
                         ) : viewDoc.type.startsWith("text/") ? (
-                            <iframe
-                                src={viewDoc.url}
-                                title="Text Preview"
-                                width="400%"
-                                height="800px"
-                            />
+                            <iframe src={viewDoc.url} title="Text Preview" width="400%" height="800px" />
                         ) : (
                             <p>⚠️ Preview not available for this file type.</p>
                         )}
@@ -156,7 +183,6 @@ const Dashboard = () => {
                 </div>
             )}
 
-            {/* Logout */}
             <button className="btn logout" onClick={handleLogout}>
                 <FaSignOutAlt /> Logout
             </button>

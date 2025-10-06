@@ -11,37 +11,37 @@
 /* Header */
 .app-header {
     background: linear-gradient(90deg, #fe4fcc, #00f2fe);
-    padding: 20px;
-    border-radius: 12px;
+    padding: 25px;
+    border-radius: 14px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     animation: slideDown 0.6s ease;
 }
 
 .app-header h1 {
     margin: 0;
     color: white;
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: 600;
     letter-spacing: 1px;
 }
 
 /* Upload Section */
 .upload-form {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .upload-form input[type="file"] {
-    margin-right: 500px;
+    margin-right: 1790px;
 }
 
 .btn {
-    padding: 10px 18px;
-    margin: 6px;
+    padding: 12px 22px;
+    margin: 8px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -57,7 +57,7 @@
 
 .btn.upload:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+    box-shadow: 0 6px 18px rgba(67, 233, 123, 0.4);
 }
 
 .btn.delete {
@@ -67,18 +67,18 @@
 
 .btn.delete:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 118, 143, 0.4);
+    box-shadow: 0 6px 18px rgba(255, 118, 143, 0.4);
 }
 
 .btn.logout {
     background: linear-gradient(90deg, #667eea, #764ba2);
     color: white;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .btn.logout:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
 }
 
 .btn.close {
@@ -90,37 +90,63 @@
     background: #000;
 }
 
-/* Files Section */
+/* Google Drive Upload Button */
+.drive-upload-btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.drive-upload-btn:hover {
+    background-color: #357ae8;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 18px rgba(53, 122, 232, 0.4);
+}
+
+/* ✅ Bigger Files Section */
 .files-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    /* wider cards */
+    gap: 35px;
     justify-content: center;
-    gap: 20px;
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .file-box {
     background: white;
-    border-radius: 12px;
-    padding: 20px;
-    width: 260px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     animation: fadeIn 0.7s ease;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .file-box:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .file-box h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
     color: #444;
 }
 
 .file-box p {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: #777;
 }
 
@@ -140,10 +166,10 @@
 
 .modal-content {
     background: white;
-    padding: 25px;
-    border-radius: 12px;
-    width: 80%;
-    max-width: 700px;
+    padding: 30px;
+    border-radius: 14px;
+    width: 85%;
+    max-width: 750px;
     animation: popUp 0.4s ease;
 }
 
